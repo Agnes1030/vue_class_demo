@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 用来获取当前实例的直接子组件 -->
+<body>
+    <div id="app">
+        <button @click='child'>查看子组件</button>
+        <my-component></my-component>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            template:'<div>myComponent</div>'
+        })
+        var vm = new Vue({
+            el:'#app',
+            methods: {
+                child(){
+                    console.log(this.$children);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

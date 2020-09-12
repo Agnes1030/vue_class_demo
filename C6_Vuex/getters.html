@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{this.$store.getters}}</p>
+        <p>{{this.$store.getters.doneTodoes}}</p>
+        <p>{{this.$store.getters.doneTodoesCount}}</p>
+    </div>
+    <script>
+        const store = new Vuex.Store({
+            state: {
+                todos:[{
+                    id:1,
+                    text:'我已完成',
+                    done:true
+                },{
+                    id:2,
+                    text:'我未完成',
+                    done:false
+                }]
+            },
+            getters: {
+                doneTodoes:state=>{
+                    return state.todos.filter(
+                        todo=>todo.done
+                    )
+                },
+                // 获取已完成的数量
+                doneTodoesCount:(state,getters)=>{
+                    return getters.doneTodoes.length
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            store
+        })
+    </script>
+</body>
+
+</html>

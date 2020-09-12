@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js"></script>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" placeholder="请输入要查找的内容" v-model='query'> 
+        <fade>
+            <li v-for='(item,index) in resultList' :key='item.msg' :data-index='index'>{{item.msg}}</li>
+       </fade>
+    </div>
+    <template id="temp">
+        <transition-group tag="ul" @before-enter='beforeEnter' @enter='enter' @leave='leave' v-bind:css='false'>
+           <slot></slot>
+        </transition-group>
+    </template>
+    <script>
+        Vue.component('fade',{
+            template:'#temp',
+            methods: {
+                //编写beforeEnter()、enter()、leave()过渡动画方法
+                beforeEnter(el) {
+                    el.style.opacity = 0
+                    el.style.height = 0
+                },
+                enter(el, done) {
+                    //交错过渡，延迟过渡，每个li都要做延迟过渡
+                    var delay = el.dataset.index * 150;
+                    setTimeout(function () {
+                        Velocity(el, {
+                            opacity: 1, height: '1.6em'
+                        }, { complete: done });
+                    })
+                },
+                leave(el, done) {
+                    var delay = el.dataset.index * 150;
+                    setTimeout(function () {
+                        Velocity(el, {
+                            opacity: 0, height: '0em'
+                        }, { complete: done });
+                    })
+                }
+
+            }
+        
+        })
+        var vm = new Vue({
+            el: '#app',
+            data() {
+                return {
+                    query: '',//v-model绑定的值
+                    items: [{//存放数组元素
+                        msg: '张三'
+                    }, {
+                        msg: '李四'
+                    }, {
+                        msg: '张芳芳'
+                    }, {
+                        msg: '王琳琳'
+                    }, {
+                        msg: '冯圆'
+                    }]
+                }
+            },
+            computed: {
+                resultList() {//计算属性
+                    //根据用户输入内容查询items
+                    var query = this.query;
+                    var items = this.items;
+                    return items.filter(function(item){
+                        return item.msg.indexOf(query) !== -1;
+                    })
+                }
+            },
+           })
+    </script>
+</body>
+
+</html>

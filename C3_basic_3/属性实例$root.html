@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 用来获取当前组件树的根Vue实例，如果当前实例没有父实例，则获取到的是该实例本身 -->
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            template:'<button @click="root">查看根实例</button>',
+            methods: {
+                root(){
+                    console.log(this.$root);
+                    console.log(this.$root===vm.$root);
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+        });
+        console.log(vm.$root);
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+<!-- store.registerModule()用于动态创建模块接口 -->
+<body>
+    <div id="app"></div>
+    <script>
+        const store=new Vuex.Store({
+            state:{}
+        })
+        store.registerModule('myModule',{
+            state:{
+                name:'我是注册模块的数据'
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            store
+        })
+        document.write(store.state.myModule.name)
+    </script>
+</body>
+
+</html>

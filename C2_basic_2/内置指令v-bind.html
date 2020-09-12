@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-bind:value='msg'>
+        <!-- <a v-bind:href="dataHref">我是一个超链接</a> -->
+        <a :href="dataHref">我是一个超链接</a>
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                msg:'我是v-bind的内容',
+                dataHref:'http://www.baidu.com'
+            }
+        });
+    </script>
+</body>
+</html>

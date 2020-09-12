@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 是一种分发Vue组件中可复用功能非常灵活的方式，混入对象可以包含任意组件选项。当组件使用混入对象时，所有混入对象的选项将被混入该组件本身的选项 -->
+<!-- 当组件和混入对象含有同名选项时，这些选项将以恰当的方式混合 -->
+<body>
+    <div id="app">
+        {{msg}}
+    </div>
+    <script>
+        Vue.mixin({
+            //混入对象可以有组件中的选项
+            data () {
+                return {
+                    msg:'混入页面的数据'
+                }
+            },
+            created () {
+                console.log('混入的created');
+                var myOption = this.$options.myOption;
+                if(myOption){
+                    console.log(myOption.toUpperCase());
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+            myOption:'hello Vue',
+            created(){
+                console.log('这是Vue的created钩子函数');
+            },
+            data:{}
+        })
+    </script>
+</body>
+</html>

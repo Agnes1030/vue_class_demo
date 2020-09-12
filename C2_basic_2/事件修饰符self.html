@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+    <style>
+        .Odiv1{
+            width: 80px;
+            height: 80px;
+            background: #aaa;
+            margin: 5px;
+        }
+
+        .Odiv2{
+            width: 50px;
+            height: 50px;
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class='Odiv1' @click.self='doParent'>a
+            <div class="Odiv2" @click='doThis'>b</div>
+        </div>
+        <div class='Odiv1' @click='doParent'>c
+            <div class="Odiv2" @click='doThis'>d</div>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            methods: {
+                doParent() {
+                    console.log('我是父元素');
+                },
+                doThis() {
+                    console.log('我是子元素的单击事件');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

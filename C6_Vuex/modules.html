@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+<!-- modules模块是为了应对复杂的业务逻辑，将数据与操作数据的逻辑分模块处理 -->
+<body>
+    <div id="app"></div>
+    <script>
+        const moduleA={
+            state:{
+                nameA:'A'
+            }
+        }
+        const moduleB={
+            state:{
+                nameB:'B'
+            }
+        }
+        const store=new Vuex.Store({
+            modules: {
+                a:moduleA,
+                b:moduleB
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            store
+        })
+        console.log(store.state.a);
+        console.log(store.state.b);
+    </script>
+</body>
+
+</html>

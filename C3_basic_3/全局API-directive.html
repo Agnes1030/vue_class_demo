@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-focus='true'>
+    </div>
+    <script>
+        //1.指令的名称
+        //2.指令的配置对象
+        Vue.directive('focus', {
+            //希望使用当前指令的元素，在插入到DOM界面中时，让此元素获取焦点
+            inserted(el, binding) {
+                //el:使用指令的元素
+                //binding：指令相关的配置信息
+                if (binding.value) {//获取的是指令的值：如果是true，就执行获取焦点
+                    el.focus();
+                }
+            }
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

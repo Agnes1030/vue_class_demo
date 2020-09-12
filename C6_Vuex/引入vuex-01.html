@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{this.$store.state.name}}</p>
+    </div>
+    <script>
+        var store = new Vuex.Store({
+            state: {
+                name:'vuex.js直接引用'
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            store
+        })
+    </script>
+</body>
+
+</html>

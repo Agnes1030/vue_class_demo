@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 可以获取组件的属性，但其获取的属性中不包含class、style以及被声明为props的属性 -->
+<body>
+    <div id="app">
+        <my-component id="test"></my-component>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            template:'<button @click="showAttrs">查看属性</button>',
+            methods: {
+                showAttrs(){
+                    console.log(this.$attrs);
+                }
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

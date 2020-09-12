@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 用于注册混入对象，混入对象：包含公共的方法或者数据，计算属性等，然后混入到多个组件中使用，方便管理与统一修改 -->
+<!-- 混入对象与Vue的选项会冲突，冲突之后有优先原则
+        1、如果数据或函数冲突，Vue优先
+        2、如果是钩子函数冲突，都执行，先执行混入对象的钩子函数，然后执行Vue的钩子函数
+-->
+<body>
+    <div id="app">
+
+    </div>
+    <script>
+        // 1、定义mixin混入对象
+        var mixin = {
+            data () {
+                return {
+                    message:'mixin的数据'
+                }
+            },
+            methods: {
+                hello(){
+                    console.log('Hello from mixin');
+                }
+            },
+            created () {
+                console.log('mixin的钩子函数');
+            }
+        }
+        // 2、注册mixin混入
+        var vm = new Vue({
+            el:'#app',
+            mixins:[mixin],
+            data:{
+                message:'Vue的数据'
+            },
+            methods: {
+                hello(){
+                    console.log('Hello from mixin');
+                }
+            },
+            created () {
+                console.log('Vues的钩子函数');
+                console.log(this.message);
+                this.hello();
+            }
+        })
+    </script>
+</body>
+</html>

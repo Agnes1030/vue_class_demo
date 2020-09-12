@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.circular{
+            width:100px;
+            height:100px;
+            background: red;
+            border-radius: 50%;
+            margin-top: 20px;
+            text-align: center;
+            line-height: 100px;
+            color: #fff;
+        }
+        .bounce-enter-active{
+            animation:Anim 1s;
+        }
+        .bounce-leave-active{
+            animation:Anim 1s reverse;
+        }
+        @keyframes Anim{
+            /* 相当于v-enter 和 v-leave-to */
+            0%{
+                transform: scale(0);
+                background: red;
+            }
+            /* 相当于v-leave 和 v-enter-to */
+            100%{
+                transform: scale(1);
+                background: blue;
+            }
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click='show=!show'>使用@keyframes创建css动画</button>
+        <transition name="bounce">
+            <div class="circular" v-if='show'>圆形</div>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                show:true
+            }
+        })
+    </script>
+</body>
+</html>

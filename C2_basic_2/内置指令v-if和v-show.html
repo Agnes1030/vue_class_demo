@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <div v-if="isShow" style="background-color: #ccc;">我是div</div> -->
+        <div v-show="isShow" style="background-color: #ccc;">我是div</div>
+        <button @click="isShow=!isShow">我是切换显示和隐藏的按钮</button>
+    </div>
+    <script>
+        var vm =new Vue({
+            el:'#app',
+            data:{
+                isShow:true
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 用于响应式对象中添加一个属性，并确保这个新属性同样是响应式的，会触发视图更新 -->
+<body>
+    <div id="app">
+        <div>{{a}}</div>
+        <div>{{obj.b}}</div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                a:'我是根级响应式属性a',
+                obj:{}
+            }
+        });
+        Vue.set(vm.obj,'b','我是Vue.set添加的响应式属性b')
+    </script>
+</body>
+</html>

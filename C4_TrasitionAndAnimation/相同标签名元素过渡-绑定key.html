@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+</head>
+<!-- 相同标签名的元素切换时，需要通过key设置唯一值 -->
+<body>
+    <div id="app">
+        <button @click='isEdit=!isEdit'>切换编辑和保存</button>
+        <transition>
+            <button v-bind:key='edit'>{{isEdit?'编辑':'保存'}}</button>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                isEdit:true
+            }
+        })
+    </script>
+</body>
+</html>

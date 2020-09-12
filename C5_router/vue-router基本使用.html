@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+<body>
+    <div id="app">
+        <!-- router-link是路由链接，to代表链接地址，tag代表渲染的标签 -->
+        <router-link to="/login" tag='span'>前往登录</router-link>
+        <!-- router-view是路由视图，用于显示路由链接对应的组件 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        var login={
+            template:'<h1>登录组件</h1>'
+        }
+        var router=new VueRouter({
+            // 配置路由匹配规则
+            routes:[
+                {path:'/login',component:login}
+            ]
+        });
+        var vm = new Vue({
+            el:'#app',
+            // router:router,
+            // 将路由规则对象注册到vm实例上
+            router
+        })
+    </script>
+</body>
+</html>

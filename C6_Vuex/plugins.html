@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+<!-- 一般用plugin初始化一些数据 -->
+<body>
+    <div id="app"></div>
+    <script>
+        const myPlugin = store => {
+        // 当store初始化后调用
+            store.subscribe((mutation, state) => {
+                // 每次mutation提交后调用
+                console.log(mutation.type, mutation.payload);
+            })
+        }
+        const store = new Vuex.Store({
+            mutations: {
+                do(state){
+                    console.log(state);
+                }
+            },
+            plugins:[myPlugin]
+        })
+        var vm = new Vue({
+            el: '#app',
+            store
+        })
+        store.commit('do','plugin')
+    </script>
+</body>
+
+</html>

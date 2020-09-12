@@ -1,0 +1,62 @@
+/*
+ * @Author: Agnes.mahengmin
+ * @Date: yyyy-09-We 08:48:33 
+ * @Last Modified by:   Agnes.mahengmin 
+ * @Last Modified time: yyyy-09-We 08:48:33 
+ */
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    <style>
+        .fade-enter-active,
+        .fade-leave-active {
+            transition: opacity .5s ease;
+        }
+
+        .fade-enter,
+        .fade-leave-to {
+            opacity: 0;
+        }
+    </style>
+</head>
+<!-- 通过<component>元素的is属性来切换组件，实现动态组件，然后给组件添加过渡，这就是多组件过渡 -->
+<body>
+    <!-- 定义登录组件模版 -->
+    <template id="example1">
+        <span>我是登录组件</span>
+    </template>
+    <!-- 定义注册组件模版 -->
+    <template id="example2">
+        <span>我是注册组件</span>
+    </template>
+    <div id="app">
+        <!-- href="javascript:;阻止跳转行为 -->
+        <a href="javascript:;" @click='componentName="example1"'>登录</a>
+        <a href="javascript:;" @click='componentName="example2"'>注册</a>
+        <transition name="fade" mode="out-in">
+            <component :is='componentName'></component>
+        </transition>
+    </div>
+    <script>
+        Vue.component('example1', {
+            template: '#example1'
+        })
+        Vue.component('example2', {
+            template: '#example2'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                componentName: ''
+            }
+        })
+    </script>
+</body>
+
+</html>

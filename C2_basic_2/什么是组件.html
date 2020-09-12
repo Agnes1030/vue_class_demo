@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+        <my-component></my-component>
+        <my-component></my-component>
+    </div>
+    <script>
+        //参数1:组件名称
+        //参数2:组件的配置对象
+        Vue.component('my-component',{
+            //组件使用的数据
+            data () {
+                return {
+                    count:0
+                }
+            },
+            //组件模版：组件显示的内容
+            template:'<button @click="count++">被单击了{{count}}次</button>'
+        });
+        var vm = new Vue({
+            el:'#app',
+            
+        })
+    </script>
+</body>
+</html>

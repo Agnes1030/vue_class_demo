@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<!-- 可以实现前进后退 接收正数或负数，表示前进或后退 -->
+<body>
+    <div id="app">
+        <button @click='goStart'>跳转</button>
+        <button @click='goBack'>后退</button>
+        <router-view></router-view>
+    </div>
+    <script>
+        var user={
+            template:'<p>用户名:{{  this.$route.query.name}}</p>'
+        }
+        var router=new VueRouter({
+            routes:[{
+                path:'/user',component:user
+            }]
+        })
+        var vm = new Vue({
+            el: '#app',
+            router,
+            methods: {
+                goStart(){
+                    this.$router.push(
+                        {
+                            path:'/user',
+                            query:{
+                                name:'admin'
+                            }
+                        }
+                    )
+                },
+                goBack(){
+                    this.$router.go(-1)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

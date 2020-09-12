@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 用于创建元素，配合render使用，
+    第1个参数可以是一个html标签名或组件选项对象；
+    第2个参数是可选的，可以传入一个模版中属性对应的数据对象；
+    第3个参数是由createElement（）构建而成的子级虚拟节点，也可以使用字符串来生成文本虚拟节点 -->
+<body>
+    <div id="app">
+        <my-component>
+            <template v-slot:header>
+                <div style="background-color: #ccc;height: 50px;">这里是导航栏</div>
+            </template>
+            <template v-slot:content>
+                <div style="background-color:#ddd;height: 50px;">这里是内容区域</div>
+            </template>
+            <template v-slot:footer>
+                <div style="background-color: #eee;height: 50px;">这里是底部区域</div>
+            </template>
+        </my-component>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            render(createElement){
+                return createElement('div',[
+                createElement('header',this.$slots.header),
+                createElement('content',this.$slots.content),
+                createElement('footer',this.$slots.footer)
+                ]);
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

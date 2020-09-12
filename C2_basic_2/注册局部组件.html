@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 标签中只能使用短横线命名的自定义组件 -->
+        <my-component></my-component>
+        <!-- <my-component></my-component> -->
+    </div>
+    <script>
+        var com1 = {
+            template:'<p>我是vm实例中注册的局部组件</p>'
+        }
+        var vm = new Vue({
+            el:'#app',
+            components: {
+                //key是组件名，value：组件的配置对象
+                myComponent:com1
+                // 'my-component':com1
+            }
+        })
+    </script>
+</body>
+</html>

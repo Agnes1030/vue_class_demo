@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='calculator'>计数按钮</button>
+        <p>{{this.$store.state.count}}</p>
+    </div>
+    <script>
+        var store=new Vuex.Store({
+            state:{
+                count:0
+            },
+            // mutations专门修改state中的数据,可以追踪数据变化
+            mutations: {
+                increment(state){
+                    state.count++;
+                }
+            },
+            actions: {
+                add(context){
+                    setTimeout(() => {
+                        context.commit('increment')
+                    }, 1000);
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            store,
+            methods: {
+                calculator(){
+                    this.$store.dispatch('add')
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

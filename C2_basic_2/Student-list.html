@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="add">添加学生</button>
+        <button @click="del">删除学生</button>
+        <table border="1" width="50%" style="border-collapse: collapse;">
+            <!-- 表头 -->
+            <tr>
+                <th>班级</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+            </tr>
+            <!-- 需要遍历的tr -->
+            <tr align="center" v-for='student in students'>
+                <td>{{student.grade}}</td>
+                <td>{{student.name}}</td>
+                <td>{{student.gender}}</td>
+                <td>{{student.age}}</td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var vm= new Vue({
+            el:'#app',
+            data: {
+                students:[{
+                    grade:'1',
+                    name:'李四',
+                    gender:'男',
+                    age:'25'
+                },{
+                    grade:'1',
+                    name:'王武',
+                    gender:'女',
+                    age:'22'
+                }]
+            },
+            methods: {
+                // 添加学生信息
+                add(){
+                    var student={
+                        grade:'1',
+                        name:'张三',
+                        gender:'男',
+                        age:25
+                    };
+                    this.students.push(student)
+                },
+                //删除学生信息
+                del(){
+                    this.students.pop()
+                }
+            }
+        });
+    </script>
+</body>
+</html>

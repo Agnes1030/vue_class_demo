@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!--
+        1.引入vue.js
+        2.定义一个div
+        3.实例化vue
+        4.将数据显示到界面上
+    -->
+    <div id="app">
+        {{name}}
+        <p>{{name}}</p>
+    </div>
+    <script>
+        var vm = new new Vue({
+            el:"#app",
+            data:{
+                name:"vue实例绑定成功！"
+            }
+        });
+    </script>
+</body>
+</html>

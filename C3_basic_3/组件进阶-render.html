@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<!-- 实现对虚拟DOM的操作，通过JS来渲染界面元素
+    render是一个函数，作为一个选项存在，可以在Vue中和组件中使用这个选项
+    render的参数： createElement是一个用于创建元素的函数  -->
+<body>
+    <div id="app">
+        <my-component>成功渲染</my-component>
+    </div>
+    <script>
+        Vue.component('my-component',{
+            render(createElement){
+                return createElement('p',{
+                    style:{
+                        color:'red',
+                        fontSize:'16px',
+                        backgroundColor:'#eee'
+                    }
+                },this.$slots.default);
+            }
+        })
+        var vm = new Vue({
+            el:'#app',
+        })
+    </script>
+</body>
+</html>

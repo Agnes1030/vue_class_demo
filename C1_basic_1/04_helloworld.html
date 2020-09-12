@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!--
+        1.引入vue.js
+        2.定义一个div，id为app
+        3.创建Vue实例
+        4.显示Vue的数据
+    -->
+    <div id="app">
+        <!--显示Vue的数据:插值表达式{{data的属性名}}-->
+        {{msg}}
+    </div>
+    <script>
+        var vm=new Vue({
+            //属性1:el，表示当前Vue要控制的页面区域
+            //el的属性值是一个字符串，一个选择器
+            el:'#app',
+            //属性2:data，表示当前Vue要控制的区域数据
+            //data的属性值是一个对象
+            data:{
+                msg:'Hello Vue.js'
+            }
+        });
+    </script>
+</body>
+</html>

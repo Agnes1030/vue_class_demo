@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <router-link to="/user?id=10&name=admin">登陆</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var user={
+            template:'<h3>id:{{this.$route.query.id}} name:{{this.$route.query.name}}</h3>',
+            created () {
+                console.log(this.$route);
+            }
+        }
+        var router=new VueRouter({
+            routes:[
+                {path:'/user',component:user}
+            ]
+        });
+        var vm = new Vue({
+            el:'#app',
+            router
+        })
+    </script>
+</body>
+</html>

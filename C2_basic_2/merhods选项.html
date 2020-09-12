@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click='showInfo2'>请单击</button>
+        <p>{{msg}}</p>
+    </div>
+   <script>
+       var vm = new Vue({
+           el:'#app',
+           data:{
+               msg:'原始值'
+           },
+           methods: {
+               showInfo:function(){
+                   this.msg='点击之后的内容';
+               },
+               showInfo2(){
+                   this.msg='点击之后的内容2';
+               }
+           }
+       });
+   </script>
+</body>
+</html>

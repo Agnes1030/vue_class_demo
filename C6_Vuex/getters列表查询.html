@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="../js/vuex.js"></script>
+</head>
+<!-- getters，类似于Vue实例的computed计算属性，获取计算之后的数据 -->
+<body>
+    <div id="app">
+        <h2>列表查询</h2>
+        <input type="text" v-model='id'>
+        <button @click='search'>搜索</button>
+        <p>搜索结果：{{this.$store.getters.searchG}}</p>
+        <ul>
+            <li v-for='item in this.$store.state.todos'>{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        const store = new Vuex.Store({
+            state: {
+                todos: [{
+                    id: 1,
+                    text: '列表1'
+                }, {
+                    id: 2,
+                    text: '列表2'
+                } // 此处可以添加更多数据...
+                ],
+                id: 0
+            },
+            mutations: {
+                searchM(state, id) {
+                    state.id = id;
+                }
+            },
+            getters: {
+                searchG: state => {
+                    return state.todos.filter(
+                        todo => todo.id == state.id
+                    )
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                id: ''
+            },
+            store,
+            methods: {
+                search() {
+                    this.$store.commit('searchM', this.id)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<!-- 不同标签名可以使用v-if和v-else来进行过渡 -->
+<body>
+    <div id="app">
+        <transition name="" mode="">
+            <ul v-if='items.length >0'>
+                <li>项目1</li>
+                <li>项目2</li>
+            </ul>
+            <p v-else>抱歉,没有找到您查询的内容</p>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                items:[1,2]
+            }
+        })
+    </script>
+</body>
+
+</html>

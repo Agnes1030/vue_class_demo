@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src='../js/vue-router.js'></script>
+</head>
+<!-- 如果路由的path比较长，使用的时候比较麻烦，这时候可以给路由起一个名字，用的时候通过名字使用 -->
+<body>
+    <div id="app">
+        <router-link :to="{name:'user',params:{id:123}}">登陆</router-link>
+        <router-view></router-view>
+    </div>
+    <script>
+        var user={
+            template:'<h3>我是user组件</h3>',
+            created () {
+                console.log(this.$route);
+            }
+        }
+        var router=new VueRouter({
+            routes:[
+                {
+                    path:'/user/:id',
+                    component:user,
+                    name:'user'
+                }
+            ]
+        })
+        var vm = new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+
+</html>

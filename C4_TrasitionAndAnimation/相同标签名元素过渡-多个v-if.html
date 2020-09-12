@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.3/velocity.min.js"></script>
+    <style>
+        .row-enter {
+            width: 0px;
+        }
+
+        .row-enter-active {
+            transition: width 3s;
+        }
+
+        .row-enter-to {
+            width: 200px;
+        }
+
+        .red {
+            background-color: red;
+            height: 20px;
+        }
+
+        .blue {
+            background-color: blue;
+            height: 20px;
+        }
+
+        .yellow {
+            background-color: yellow;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click='showNum'>切换</button>
+        <transition name='row'>
+            <div class="red" v-if="show == 'A'" key="A"></div>
+            <div class="blue" v-if="show == 'B'" key="B"></div>
+            <div class="yellow" v-if="show == 'C'" key="C"></div>
+        </transition>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                show: 'A'
+            },
+            methods: {
+                showNum() {
+                    if (this.show == 'A') {
+                        this.show = 'B';
+                    } else if (this.show == 'B') {
+                        this.show = 'C';
+                    } else {
+                        this.show = 'A';
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

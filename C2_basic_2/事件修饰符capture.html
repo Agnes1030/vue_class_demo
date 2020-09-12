@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div @click.capture='doParent'>
+            <button @click='doThis'>事件捕获</button>
+        </div>
+    </div>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            methods: {
+                doParent() {
+                    console.log('我是父元素');
+                },
+                doThis() {
+                    console.log('我是子元素的单击事件');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

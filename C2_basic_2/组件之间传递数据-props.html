@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <!-- 父组件向子组件传递数据 -->
+    <div id="app">
+        <my-parent name='title'></my-parent>
+    </div>
+    <script>
+        Vue.component('my-parent',{
+            //props：规定组件可以通过哪些属性传递数据
+            props: ['name'],
+            template:'<div>我是父组件的{{name}}</div>'
+        })
+        var vm = new Vue({
+            el:'#app',
+            
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <div id="app" v-on:click="doParent">
+        <button v-on:click="doThis">事件冒泡</button>
+        <button v-on:click.stop="doThis">阻止事件冒泡</button>
+    </div>
+    <script>
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                
+            },
+            methods: {
+                doParent(){
+                    console.log('我是父元素单击事件');
+                },
+                doThis(){
+                    console.log('我是被单击元素事件');
+                }
+            }
+        })
+    </script>
+</body>
+</html>
